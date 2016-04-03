@@ -1,0 +1,525 @@
+  [1m[36m (84.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (92.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateAddresses (20160401123959)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAddresses (20160401123959)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401123959_create_addresses.rb:10)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401123959"]]
+  [1m[36m (105.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCountries (20160401124700)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124700_create_countries.rb:6)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124700"]]
+  [1m[36m (140.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCreditCards (20160401124715)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124715_create_credit_cards.rb:11)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124715"]]
+  [1m[36m (268.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateDeliveries (20160401124723)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124723_create_deliveries.rb:7)
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124723"]]
+  [1m[36m (216.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrderItems (20160401124729)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124729_create_order_items.rb:9)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_shopper_order_items_on_item_type_and_item_id" ON "shopper_order_items" ("item_type", "item_id")[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (209.2ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (61.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (114.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (85.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401123959')
+  [1m[36m (82.5ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (124.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (166.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (166.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401123959')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCountries (20160401124700)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124700_create_countries.rb:6)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124700"]]
+  [1m[36m (166.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCreditCards (20160401124715)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124715_create_credit_cards.rb:11)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124715"]]
+  [1m[36m (247.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateDeliveries (20160401124723)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124723_create_deliveries.rb:7)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124723"]]
+  [1m[36m (138.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrderItems (20160401124729)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124729_create_order_items.rb:9)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124729"]]
+  [1m[36m (107.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrders (20160401124733)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124733_create_orders.rb:12)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124733"]]
+  [1m[36m (192.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36m (111.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (203.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateAddresses (20160401123959)
+  [1m[36m (195.3ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (177.2ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (149.9ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (225.2ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (175.3ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (235.6ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35m (92.4ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (103.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124733')
+  [1m[36m (166.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124715')[0m
+  [1m[35m (108.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124729')
+  [1m[36m (108.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124723')[0m
+  [1m[35m (74.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124700')
+  [1m[36m (89.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401123959')[0m
+  [1m[35m (157.5ms)[0m  CREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1050.3ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (193.9ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (248.1ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (214.3ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (218.9ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (192.8ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (150.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (242.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (125.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124733')[0m
+  [1m[35m (124.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124715')
+  [1m[36m (217.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124729')[0m
+  [1m[35m (167.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124723')
+  [1m[36m (140.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124700')[0m
+  [1m[35m (152.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401123959')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateOrders (20160401124733)
+  [1m[36m (102.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (258.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateAddresses (20160401123959)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateShopperEngineAddresses (20160401123959)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401123959_create_shopper_engine_addresses.rb:10)
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401123959"]]
+  [1m[36m (98.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShopperEngineCountries (20160401124700)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124700_create_shopper_engine_countries.rb:6)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124700"]]
+  [1m[36m (195.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShopperEngineCreditCards (20160401124715)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124715_create_shopper_engine_credit_cards.rb:11)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124715"]]
+  [1m[36m (176.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShopperEngineDeliveries (20160401124723)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124723_create_shopper_engine_deliveries.rb:7)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124723"]]
+  [1m[36m (235.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShopperEngineOrderItems (20160401124729)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124729_create_shopper_engine_order_items.rb:9)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124729"]]
+  [1m[36m (140.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShopperEngineOrders (20160401124733)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124733_create_shopper_engine_orders.rb:12)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124733"]]
+  [1m[36m (184.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36m (50.7ms)[0m  [1mDROP TABLE "shopper_engine_addresses"[0m
+  [1m[35m (48.5ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (42.3ms)[0m  [1mDROP TABLE "shopper_engine_countries"[0m
+  [1m[35m (56.8ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (42.2ms)[0m  [1mDROP TABLE "shopper_engine_credit_cards"[0m
+  [1m[35m (65.0ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (49.0ms)[0m  [1mDROP TABLE "shopper_engine_deliveries"[0m
+  [1m[35m (50.1ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.5ms)[0m  [1mDROP TABLE "shopper_engine_order_items"[0m
+  [1m[35m (50.1ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (45.1ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (49.4ms)[0m  [1mDROP TABLE "shopper_engine_orders"[0m
+  [1m[35m (48.0ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (44.8ms)[0m  DROP TABLE "shopper_engine_addresses"
+  [1m[36m (41.4ms)[0m  [1mCREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (41.1ms)[0m  DROP TABLE "shopper_engine_countries"
+  [1m[36m (41.4ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (41.2ms)[0m  DROP TABLE "shopper_engine_credit_cards"
+  [1m[36m (41.4ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (41.0ms)[0m  DROP TABLE "shopper_engine_deliveries"
+  [1m[36m (41.5ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (41.1ms)[0m  DROP TABLE "shopper_engine_order_items"
+  [1m[36m (41.5ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (41.0ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35m (41.1ms)[0m  DROP TABLE "shopper_engine_orders"
+  [1m[36m (41.1ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCustomers (20160402210959)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160402210959"]]
+  [1m[36m (69.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36m (71.6ms)[0m  [1mDROP TABLE "customers"[0m
+  [1m[35m (49.6ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (67.2ms)[0m  [1mDROP TABLE "shopper_engine_addresses"[0m
+  [1m[35m (73.5ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (67.5ms)[0m  [1mDROP TABLE "shopper_engine_countries"[0m
+  [1m[35m (73.3ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (58.9ms)[0m  [1mDROP TABLE "shopper_engine_credit_cards"[0m
+  [1m[35m (73.5ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.4ms)[0m  [1mDROP TABLE "shopper_engine_deliveries"[0m
+  [1m[35m (75.1ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (49.1ms)[0m  [1mDROP TABLE "shopper_engine_order_items"[0m
+  [1m[35m (75.1ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (69.1ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (74.4ms)[0m  [1mDROP TABLE "shopper_engine_orders"[0m
+  [1m[35m (73.0ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (83.0ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (34.4ms)[0m  [1mDROP TABLE "shopper_engine_addresses"[0m
+  [1m[35m (58.1ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.7ms)[0m  [1mDROP TABLE "shopper_engine_countries"[0m
+  [1m[35m (49.8ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.6ms)[0m  [1mDROP TABLE "shopper_engine_credit_cards"[0m
+  [1m[35m (66.4ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.7ms)[0m  [1mDROP TABLE "shopper_engine_deliveries"[0m
+  [1m[35m (74.8ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.7ms)[0m  [1mDROP TABLE "shopper_engine_order_items"[0m
+  [1m[35m (58.1ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (66.2ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (74.0ms)[0m  [1mDROP TABLE "shopper_engine_orders"[0m
+  [1m[35m (49.5ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (49.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402210959')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBooks (20160402214304)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160402214304"]]
+  [1m[36m (63.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36m (58.0ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (57.8ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (74.7ms)[0m  [1mCREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (74.7ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (66.3ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (57.8ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (74.6ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (60.9ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35m (81.2ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (87.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (74.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (68.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402214304')
+  [1m[36m (66.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160402210959')[0m
+  [1m[35m (58.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124733')
+  [1m[36m (66.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124729')[0m
+  [1m[35m (66.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124700')
+  [1m[36m (66.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124723')[0m
+  [1m[35m (66.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124715')
+  [1m[36m (58.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401123959')[0m
+  [1m[35m (64.7ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (83.0ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (91.3ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (75.7ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (74.8ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (82.8ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (83.1ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (91.4ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (74.4ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (91.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (183.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (53.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160402214304')[0m
+  [1m[35m (74.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402210959')
+  [1m[36m (66.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124733')[0m
+  [1m[35m (74.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124729')
+  [1m[36m (66.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124700')[0m
+  [1m[35m (66.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124723')
+  [1m[36m (66.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124715')[0m
+  [1m[35m (66.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401123959')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (54.7ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (49.7ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (57.9ms)[0m  [1mCREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (58.0ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (66.2ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (67.4ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (66.3ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (62.7ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35m (64.4ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (62.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (58.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (38.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402214304')
+  [1m[36m (41.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160402210959')[0m
+  [1m[35m (41.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124733')
+  [1m[36m (41.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124729')[0m
+  [1m[35m (41.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124700')
+  [1m[36m (49.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124723')[0m
+  [1m[35m (49.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124715')
+  [1m[36m (41.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401123959')[0m
+  [1m[35m (53.1ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (74.5ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (66.4ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (83.0ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (74.7ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (66.3ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (57.8ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (58.0ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (57.8ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (66.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (66.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (55.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160402214304')[0m
+  [1m[35m (41.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402210959')
+  [1m[36m (41.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124733')[0m
+  [1m[35m (41.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124729')
+  [1m[36m (41.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124700')[0m
+  [1m[35m (41.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124723')
+  [1m[36m (58.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124715')[0m
+  [1m[35m (41.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401123959')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (61.8ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (57.9ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (66.3ms)[0m  [1mCREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (58.0ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.9ms)[0m  [1mCREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (57.8ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (57.8ms)[0m  [1mCREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (61.8ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35m (88.8ms)[0m  CREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (62.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (66.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (54.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402214304')
+  [1m[36m (58.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160402210959')[0m
+  [1m[35m (49.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124733')
+  [1m[36m (49.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124729')[0m
+  [1m[35m (49.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124700')
+  [1m[36m (49.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124723')[0m
+  [1m[35m (66.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124715')
+  [1m[36m (49.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401123959')[0m
+  [1m[35m (70.8ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (57.9ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (66.3ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (66.3ms)[0m  [1mCREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (66.1ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (67.3ms)[0m  [1mCREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (66.2ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (66.3ms)[0m  CREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")
+  [1m[36m (141.3ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (116.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (66.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (44.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160402214304')[0m
+  [1m[35m (58.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160402210959')
+  [1m[36m (49.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124733')[0m
+  [1m[35m (49.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124729')
+  [1m[36m (49.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124700')[0m
+  [1m[35m (49.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401124723')
+  [1m[36m (49.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160401124715')[0m
+  [1m[35m (49.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160401123959')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (134.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (57.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateShopperEngineAddresses (20160401123959)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401123959_create_shopper_engine_addresses.rb:10)
+  [1m[35m (0.4ms)[0m  CREATE TABLE "shopper_engine_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "address" varchar, "zipcode" varchar, "city" varchar, "country_id" integer, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160401123959"]]
+  [1m[35m (77.3ms)[0m  commit transaction
+Migrating to CreateShopperEngineCountries (20160401124700)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124700_create_shopper_engine_countries.rb:6)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "shopper_engine_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160401124700"]]
+  [1m[35m (55.7ms)[0m  commit transaction
+Migrating to CreateShopperEngineCreditCards (20160401124715)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124715_create_shopper_engine_credit_cards.rb:11)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "shopper_engine_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar, "cvv" varchar, "expiration_month" integer, "expiration_year" integer, "first_name" varchar, "last_name" varchar, "customer_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160401124715"]]
+  [1m[35m (81.0ms)[0m  commit transaction
+Migrating to CreateShopperEngineDeliveries (20160401124723)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124723_create_shopper_engine_deliveries.rb:7)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "shopper_engine_deliveries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "price" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160401124723"]]
+  [1m[35m (81.4ms)[0m  commit transaction
+Migrating to CreateShopperEngineOrderItems (20160401124729)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124729_create_shopper_engine_order_items.rb:10)
+  [1m[35m (0.4ms)[0m  CREATE TABLE "shopper_engine_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "quantity" integer, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "book_id" integer, "order_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_shopper_engine_order_items_on_item_type_and_item_id" ON "shopper_engine_order_items" ("item_type", "item_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124729"]]
+  [1m[36m (80.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShopperEngineOrders (20160401124733)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/roman/Documents/shopper_engine/db/migrate/20160401124733_create_shopper_engine_orders.rb:12)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "shopper_engine_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer DEFAULT 0, "completed_date" date, "state" integer, "shipping_address_id" integer NOT NULL, "billing_address_id" integer NOT NULL, "customer_id" integer, "credit_card_id" integer, "delivery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160401124733"]]
+  [1m[36m (89.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCustomers (20160402210959)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160402210959"]]
+  [1m[36m (73.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateBooks (20160402214304)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "quantity" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160402214304"]]
+  [1m[36m (81.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopper_engine_order_items_on_item_type_and_item_id' AND type='index'
+[0m
