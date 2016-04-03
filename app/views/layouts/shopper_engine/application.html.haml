@@ -1,0 +1,18 @@
+!!!
+%html
+  = render :partial => 'layouts/head'
+  %body
+    = render :partial => 'layouts/nav'
+    .container
+      .row
+        .col-sm-12
+          = render :partial => 'layouts/flash_messages'
+      .row
+        .col-md-12
+          = yield
+    .container
+      %hr
+      %footer
+        .row
+          .col-lg-12
+            %p Copyright © Your Website 2014

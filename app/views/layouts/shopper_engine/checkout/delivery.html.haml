@@ -1,0 +1,14 @@
+%h1
+  Address
+= render partial: 'nav'
+.row
+  .col-sm-6
+    .panel.panel-primary.address-panel
+      .panel-heading
+        %h4 Delivery
+      .panel-body
+        = form_for @order, url: {action: :update} do |f|
+          = f.collection_radio_buttons(:delivery_id, Delivery.all, :id, :short_description) do |b|
+            .radio
+              = b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text  }
+          = f.submit("Save", {class: 'btn btn-primary'})

@@ -1,0 +1,3 @@
+.btn-group.checkout-nav
+  - wizard_progress.each do |step|
+    = link_to step[:name].capitalize, wizard_path(step[:name]), {class: "btn btn-lg btn-default #{step[:classes]}"}

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :shopper_engine_order, class: 'ShopperEngine::Order' do
+  factory :shopper_engine_cart, class: 'ShopperEngine::Cart' do
     transient do
       order_items_count 1
     end
@@ -19,13 +19,12 @@ FactoryGirl.define do
       if order.customer.blank?
         order.customer = create(:customer)
       end
-      if order.credit_card.blank?
-        order.credit_card = create(:shopper_engine_credit_card, customer: order.customer)
-      end
       if order.order_items.blank?
-        order_items = create_list(:shopper_engine_order_item,
+        books = create_list(:book,
           evaluator.order_items_count)
-        order.order_items << order_items
+        books.each {|book|
+          order.add_item(book)
+        }
       end
     end
   end

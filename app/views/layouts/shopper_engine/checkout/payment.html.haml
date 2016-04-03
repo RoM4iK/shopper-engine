@@ -1,0 +1,38 @@
+%h1
+  Address
+= render partial: 'nav'
+.row
+  .col-sm-6
+    .panel.panel-primary.address-panel
+      .panel-heading
+        %h4 Payment info
+      .panel-body
+        - if @customer_credit_cards.present?
+          %h4
+            %strong Your credit cards
+          = form_for @order, url: {action: :update} do |f|
+            = f.collection_select(:credit_card_id, @customer_credit_cards, :id, :number)
+            = f.submit("Select", {class: 'btn btn-primary'})
+        %h4
+          %strong Credit card info
+        = form_for @credit_card, url: {action: :update}, method: :put do |f|
+          .form-group
+            = f.label :number
+            = f.text_field :number, class: 'form-control'
+          .form-group
+            = f.label :cvv
+            = f.text_field :cvv, class: 'form-control'
+          .form-group
+            = f.label :expiration_month
+            = f.text_field :expiration_month, class: 'form-control'
+          .form-group
+            = f.label :expiration_year
+            = f.text_field :expiration_year, class: 'form-control'
+          .form-group
+            = f.label :first_name
+            = f.text_field :first_name, class: 'form-control'
+          .form-group
+            = f.label :last_name
+            = f.text_field :last_name, class: 'form-control'
+          .form-group
+            = f.submit @card_editable ? "Update" : "Save", {class: 'btn btn-primary'}
