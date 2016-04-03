@@ -5,12 +5,10 @@ RSpec.describe ShopperEngine::Order, type: :model do
   it { is_expected.to belong_to(:customer) }
   it { is_expected.to have_many(:order_items) }
 
-  it { is_expected.to validate_presence_of(:state) }
-
   describe '#placed' do
     before do
       @customer = FactoryGirl.create(:customer)
-      FactoryGirl.create(:shopper_engine_order, customer: @customer, state: ShopperEngine::Order::PAYMENT)
+      FactoryGirl.create(:shopper_engine_order, customer: @customer)
       FactoryGirl.create(:shopper_engine_order, customer: @customer, state: ShopperEngine::Order::FINISHED)
     end
     it 'must return orders' do

@@ -15,7 +15,6 @@ module ShopperEngine
 
       ActiveSupport.on_load :action_controller do
         # ActionController::Base.include ShopperEngine::ControllerMethods
-        # ActionController::Base.helper ShopperEngine::ApplicationHelper
       end
     end
   end

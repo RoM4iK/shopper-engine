@@ -4,7 +4,7 @@ class CreateShopperEngineDeliveries < ActiveRecord::Migration
       t.string  :name
       t.string  :description
       t.integer :price
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -8,7 +8,7 @@ class CreateShopperEngineCreditCards < ActiveRecord::Migration
       t.string   :first_name
       t.string   :last_name
       t.belongs_to :customer
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -7,7 +7,7 @@ class CreateShopperEngineAddresses < ActiveRecord::Migration
       t.string :city
       t.belongs_to :country
       t.belongs_to :customer
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

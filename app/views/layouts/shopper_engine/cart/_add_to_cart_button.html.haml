@@ -1,0 +1,5 @@
+= form_tag({controller: :cart, action: :add}, { class: 'add-to-cart-button', id: "add_to_cart_button_#{@product.id}" }) do
+  = hidden_field_tag(:product_id, @product.id, {id: "add_to_cart_button_#{@product.id}_id"})
+  = hidden_field_tag(:product_type, @product.product_type, {id: "add_to_cart_button_#{@product.id}_type"})
+  = number_field_tag(:quantity, 1, min: 1, step: 1, id: "add_to_cart_button_#{@product.id}_quantity")
+  = submit_tag "Buy", class: 'btn btn-success'

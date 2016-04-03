@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.string   "product_type"
     t.integer  "book_id"
     t.integer  "order_id"
+    t.datetime "placed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

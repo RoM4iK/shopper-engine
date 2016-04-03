@@ -4,9 +4,9 @@ class CreateShopperEngineOrderItems < ActiveRecord::Migration
       t.integer  :price
       t.integer  :quantity
       t.references :product, polymorphic: true
-      t.belongs_to :book
       t.belongs_to :order
-      t.timestamps
+      t.datetime :placed_at
+      t.timestamps null: false
     end
   end
 end
