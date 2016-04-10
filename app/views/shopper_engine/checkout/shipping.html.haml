@@ -5,17 +5,17 @@
   .col-sm-6
     .panel.panel-primary.address-panel
       .panel-heading
-        - if @order.billing_address.present?
+        - if @cart.billing_address.present?
           = form_tag checkout_path, method: :put, class: 'skip-shipping' do
             = hidden_field_tag :skip_shipping, true
             = submit_tag 'Use billing address', {class: 'btn btn-warning btn-default pull-right'}
         %h4 Shipping address
       .panel-body
-        - if @customer_addresses.present?
+        - if @user_addresses.present?
           %h4
             %strong Your addresses
-          = form_for @order, url: {action: :update} do |f|
-            = f.collection_select(:shipping_address, @customer_addresses, :id, :address, {:selected => @order.shipping_address ? @order.shipping_address.id.to_i : nil})
+          = form_for @cart, url: {action: :update} do |f|
+            = f.collection_select(:shipping_address, @user_addresses, :id, :address, {:selected => @cart.shipping_address ? @cart.shipping_address.id.to_i : nil})
             = f.submit("Select", {class: 'btn btn-primary'})
         %h4 Address info
-        = render partial: 'address_form', locals: { address: @shipping_address}
+        = render partial: 'address_form', locals: { address: @address}

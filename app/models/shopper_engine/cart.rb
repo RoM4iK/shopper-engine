@@ -29,10 +29,9 @@ module ShopperEngine
         save
     end
 
-    def place!
-      state = self::SHIPPING
-      placed_at = Time.now
-      save!
+    def place!(customer)
+      self.attributes = { customer: customer, state: SHIPPING, placed_at: Time.now }
+      self.save!
     end
 
   end

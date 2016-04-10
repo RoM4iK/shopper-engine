@@ -7,24 +7,24 @@
       .panel-heading
         Billing address
       .panel-body
-        = @order.billing_address && @order.billing_address.address
+        = @cart.billing_address && @cart.billing_address.address
       .panel-heading
         Shipping address
       .panel-body
-        = @order.shipping_address && @order.shipping_address.address
+        = @cart.shipping_address && @cart.shipping_address.address
       .panel-heading
         Delivery
       .panel-body
-        = @order.delivery && @order.delivery.name
+        = @cart.delivery && @cart.delivery.name
       .panel-heading
         Payment
       .panel-body
-        = @order.credit_card && @order.credit_card.number
+        = @cart.credit_card && @cart.credit_card.number
   .col-sm-6
     .panel.panel-primary.address-panel
       .panel-heading
         Your cart
       .panel-body
-        = render partial: 'orders/table', locals: {order: @order, editable: true}
+        = render partial: 'shopper_engine/orders/table', locals: {order: @cart, editable: true }
 %div
-  =link_to 'Submit', {controller: :orders, action: :place}, {class: 'btn btn-primary', method: :post}
+  =link_to 'Submit', cart_submit_path, {class: 'btn btn-primary', method: :get}

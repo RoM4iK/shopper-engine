@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20160402214304) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "encrypted_password"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "shopper_engine_addresses", force: :cascade do |t|
@@ -70,7 +71,6 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.integer  "product_id"
     t.string   "product_type"
     t.integer  "order_id"
-    t.datetime "placed_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.integer  "customer_id"
     t.integer  "credit_card_id"
     t.integer  "delivery_id"
+    t.datetime "placed_at"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

@@ -1,11 +1,17 @@
-module Checkout::Delivery
-  def update_delivery
-    begin
-      @order.update params.require(:order).permit(:delivery_id)
-      redirect_to next_wizard_path
-    rescue ActionController::ParameterMissing
-      flash.now[:alert] = "You must select delivery method"
-      render_wizard
+module ShopperEngine
+  module Checkout
+    class Delivery
+      def initialize(cart:, params:)
+        @cart = cart
+        @params = params
+      end
+
+      def show
+      end
+
+      def update
+        @cart.update @params.require(:cart).permit(:delivery_id)
+      end
     end
   end
 end

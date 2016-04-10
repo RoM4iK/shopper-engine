@@ -1,0 +1,21 @@
+.panel.panel-primary.address-panel
+  .panel-heading
+    %h3= "Order ##{order.id} from #{order.created_at.to_formatted_s(:short)}"
+  .panel-body
+    = render partial: 'table', locals: { order: order, editable: false }
+  .panel-heading
+    %h5 Billing address
+  .panel-body
+    = order.billing_address.address
+  .panel-heading
+    %h5 Shipping address
+  .panel-body
+    = order.shipping_address.address
+  .panel-heading
+    %h5 Delivery
+  .panel-body
+    = order.delivery.name
+  .panel-heading
+    %h5 Payment
+  .panel-body
+    = order.credit_card.number

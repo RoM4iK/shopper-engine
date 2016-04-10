@@ -9,6 +9,7 @@ class CreateShopperEngineOrders < ActiveRecord::Migration
       t.belongs_to :customer
       t.belongs_to :credit_card
       t.belongs_to :delivery
+      t.datetime :placed_at
       t.timestamps null: false
     end
   end

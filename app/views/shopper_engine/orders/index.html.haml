@@ -1,0 +1,6 @@
+-unless @orders.empty?
+  %h1 Your orders
+  - @orders.each do |order|
+    = render partial: 'list_item', locals: {order: order}
+-else
+  %h1 You have no orders

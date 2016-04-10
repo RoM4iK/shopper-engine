@@ -7,8 +7,8 @@
       .panel-heading
         %h4 Delivery
       .panel-body
-        = form_for @order, url: {action: :update} do |f|
-          = f.collection_radio_buttons(:delivery_id, Delivery.all, :id, :short_description) do |b|
+        = form_for @cart, url: {action: :update} do |f|
+          = f.collection_radio_buttons(:delivery_id, ShopperEngine::Delivery.all, :id, :short_description) do |b|
             .radio
               = b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text  }
           = f.submit("Save", {class: 'btn btn-primary'})

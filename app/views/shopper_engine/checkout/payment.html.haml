@@ -7,11 +7,11 @@
       .panel-heading
         %h4 Payment info
       .panel-body
-        - if @customer_credit_cards.present?
+        - if @user_credit_cards.present?
           %h4
             %strong Your credit cards
-          = form_for @order, url: {action: :update} do |f|
-            = f.collection_select(:credit_card_id, @customer_credit_cards, :id, :number)
+          = form_for @cart, url: {action: :update} do |f|
+            = f.collection_select(:credit_card_id, @user_credit_cards, :id, :number)
             = f.submit("Select", {class: 'btn btn-primary'})
         %h4
           %strong Credit card info

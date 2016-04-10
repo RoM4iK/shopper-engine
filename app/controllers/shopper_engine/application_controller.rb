@@ -20,5 +20,9 @@ module ShopperEngine
       @cart = ShopperEngine::Cart.create
       session[:cart_id] = @cart.id
     end
+
+    def current_user
+      send("current_#{ShopperEngine::CONFIG[:devise_scope]}")
+    end
   end
 end

@@ -21,9 +21,10 @@ module ShopperEngine
     end
 
     def place
-      @cart.place!
+      @cart.place!(current_user)
       flash[:notice] = "Your order has placed"
-      redirect_to(controller: :shopper_engine_orders, action: :list)
+      session[:cart_id] = nil
+      redirect_to(controller: :orders, action: :index)
     end
 
     private

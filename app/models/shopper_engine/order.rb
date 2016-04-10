@@ -12,7 +12,7 @@ module ShopperEngine
       belongs_to :billing_address, class_name: ShopperEngine::Address
       belongs_to :shipping_address, class_name: ShopperEngine::Address
 
-      scope :placed, -> { where("state != NULL") }
+      scope :placed, -> { where("placed_at IS NOT NULL") }
       scope :shipping, -> { where("state = #{self::SHIPPING}") }
       scope :finished, -> { where("state = #{self::FINISHED}") }
   end
