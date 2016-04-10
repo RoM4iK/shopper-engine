@@ -1,0 +1,11 @@
+- if notice
+  .alert.alert-success
+    = notice
+- if alert
+  .alert.alert-danger
+    - if alert.is_a?(Array)
+      - alert.each do |message|
+        = content_tag(:ul) do
+          = content_tag(:li, message)
+    - else
+      = alert

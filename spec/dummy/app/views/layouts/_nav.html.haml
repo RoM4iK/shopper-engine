@@ -1,0 +1,32 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} Start Bootstrap
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to("Books", books_path)
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to("Cart (#{cart_total}$)", shopper_engine.cart_path, id: 'cart')
+        %li
+          - if current_customer
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = current_customer.first_name
+              %span.caret
+              %ul.dropdown-menu
+                - unless current_customer.uid
+                  %li
+                    = link_to("Edit profile",  edit_customer_registration_path)
+                %li
+                  = link_to("My orders", {controller: '/orders', action: 'list'})
+                %li.divider{:role => "separator"}
+                %li
+                  = link_to('Logout', destroy_customer_session_path, method: "delete")
+          - else
+            = link_to("Login", new_customer_session_path)

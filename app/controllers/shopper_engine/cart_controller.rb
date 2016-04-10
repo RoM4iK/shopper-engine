@@ -2,6 +2,7 @@ require_dependency "shopper_engine/application_controller"
 
 module ShopperEngine
   class CartController < ApplicationController
+    layout 'layouts/application'
     before_action :get_current_cart
 
     def index

@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20160402214304) do
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.integer  "price"
-    t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,15 +33,15 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.string   "city"
     t.integer  "country_id"
     t.integer  "customer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "shopper_engine_countries", force: :cascade do |t|
     t.string   "name"
     t.integer  "address_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "shopper_engine_credit_cards", force: :cascade do |t|
@@ -53,16 +52,16 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "customer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "shopper_engine_deliveries", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "shopper_engine_order_items", force: :cascade do |t|
@@ -70,11 +69,10 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.integer  "quantity"
     t.integer  "product_id"
     t.string   "product_type"
-    t.integer  "book_id"
     t.integer  "order_id"
     t.datetime "placed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "shopper_engine_orders", force: :cascade do |t|
@@ -86,8 +84,8 @@ ActiveRecord::Schema.define(version: 20160402214304) do
     t.integer  "customer_id"
     t.integer  "credit_card_id"
     t.integer  "delivery_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
 end

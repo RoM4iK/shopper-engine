@@ -11,7 +11,7 @@ module ShopperEngine
         expect{@helper.add_to_cart_button(@product)}.to change{@helper.instance_variable_get(:@product)}.from(nil).to(@product)
       end
       it 'must render partial with button' do
-        expect(@helper).to receive(:render).with(partial: 'cart/add_to_cart_button')
+        expect(@helper).to receive(:render).with(partial: 'shopper_engine/cart/add_to_cart_button')
         @helper.add_to_cart_button(@product)
       end
     end

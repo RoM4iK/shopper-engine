@@ -12,9 +12,9 @@ module ShopperEngine
         ActiveRecord::Base.send :include, ShopperEngine::ActsAsProduct
         ActiveRecord::Base.send :include, ShopperEngine::ActsAsCustomer
       end
-
       ActiveSupport.on_load :action_controller do
-        # ActionController::Base.include ShopperEngine::ControllerMethods
+        helper ShopperEngine::ApplicationHelper
+        helper ShopperEngine::CartHelper
       end
     end
   end
