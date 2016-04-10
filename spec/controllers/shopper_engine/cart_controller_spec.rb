@@ -33,15 +33,15 @@ module ShopperEngine
         @cart = FactoryGirl.create(:shopper_engine_cart)
         @quantity = 10
         @cart.add_item(@book)
-        @order_item = @cart.order_items.find_by(product_type: @book.product_type.camelize, product_id: @book)
+        @order_item = @cart.order_items.first
         allow_any_instance_of(ShopperEngine::CartController).to receive(:get_cart) { @cart }
       end
       it 'must update quantity of order item' do
         expect(@cart).to receive(:update_quantity).with(@order_item, @quantity.to_s)
-        post :update_quantity, product_type: @book.product_type, product_id: @book, quantity: @quantity
+        post :update_quantity, id: @order_item.id, quantity: @quantity
       end
       it 'must redirect to index' do
-        post :update_quantity, product_type: @book.product_type, product_id: @book, quantity: @quantity
+        post :update_quantity, id: @order_item.id, quantity: @quantity
         expect(controller).to redirect_to action: :index
       end
     end

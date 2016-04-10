@@ -1,5 +1,4 @@
-= form_tag(shopper_engine.cart_update_quantity_path) do
-  = hidden_field_tag(:product_id, item.product.id)
-  = hidden_field_tag(:product_type, item.product.product_type)
+= form_tag(shopper_engine.cart_update_quantity_path, {class: 'quantity_form', id: "quantity_form_#{item.id}"}) do
+  = hidden_field_tag(:id, item.id)
   = number_field_tag(:quantity, item.quantity, min: 0, step: 1)
   = submit_tag "Update", class: 'btn btn-success'

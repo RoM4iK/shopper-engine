@@ -15,10 +15,7 @@ module ShopperEngine
     end
 
     def update_quantity
-      order_item = @cart.order_items.find_by(
-        product_type: cart_params[:product_type].camelize,
-        product_id: cart_params[:product_id]
-      )
+      order_item = @cart.order_items.find(cart_params[:id])
       @cart.update_quantity(order_item, params[:quantity])
       redirect_to(action: :index)
     end
@@ -31,7 +28,7 @@ module ShopperEngine
 
     private
     def cart_params
-      params.permit([:product_type, :product_id, :quantity])
+      params.permit([:id, :product_type, :product_id, :quantity])
     end
 
     def get_current_cart
