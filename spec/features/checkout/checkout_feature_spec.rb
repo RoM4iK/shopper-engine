@@ -6,7 +6,7 @@ feature "Checkout" do
     context "User has logged in" do
       include_context 'checkout_context'
       scenario "Should redirect to fisrt checkout step" do
-        expect(current_path).to eq(checkout_path id: 'billing')
+        expect(current_path).to eq(shopper_engine.checkout_path id: 'billing')
       end
     end
     context "User has not logged in" do
@@ -14,9 +14,9 @@ feature "Checkout" do
         @book = FactoryGirl.create(:book)
         visit root_path
         within('.add-to-cart-button') do
-          click_button 'Buy'
+          click_button 'Add to cart'
         end
-        visit cart_path
+        visit shopper_engine.cart_path
         click_link 'Checkout'
       end
       scenario "Should redirect to login page" do
@@ -27,12 +27,12 @@ feature "Checkout" do
   feature "User can fill checkout forms" do
     include_context 'checkout_context'
     before do
-      FactoryGirl.create(:country)
+      FactoryGirl.create(:shopper_engine_country)
     end
     context "With correct data" do
       before do
-        @first_path = checkout_path(id: :billing)
-        @address = FactoryGirl.build(:address)
+        @first_path = shopper_engine.checkout_path(id: :billing)
+        @address = FactoryGirl.build(:shopper_engine_address)
         visit @first_path
         within '#new_address' do
           fill_in 'Address', with: @address.address
@@ -48,7 +48,7 @@ feature "Checkout" do
     end
     context "With incorrect data" do
       before do
-        @first_path = checkout_path(id: :billing)
+        @first_path = shopper_engine.checkout_path(id: :billing)
         visit @first_path
         within '#new_address' do
           click_button 'Save'
@@ -66,11 +66,11 @@ feature "Checkout" do
     include_context "checkout_context"
     context "When user fill all forms" do
       before do
-        FactoryGirl.create(:country)
-        @address = FactoryGirl.build(:address)
-        @delivery = FactoryGirl.create(:delivery)
-        @credit_card = FactoryGirl.build(:credit_card, customer: @customer)
-        visit checkout_index_path
+        FactoryGirl.create(:shopper_engine_country)
+        @address = FactoryGirl.build(:shopper_engine_address)
+        @delivery = FactoryGirl.create(:shopper_engine_delivery)
+        @credit_card = FactoryGirl.build(:shopper_engine_credit_card, customer: @customer)
+        visit shopper_engine.checkout_index_path
         within '#new_address' do
           fill_in 'Address', with: @address.address
           fill_in 'Zipcode', with: @address.zipcode
@@ -78,16 +78,16 @@ feature "Checkout" do
           fill_in 'Phone', with: @address.phone
           click_button 'Save'
         end
-        expect(current_path).to eq(checkout_path id: :shipping)
+        expect(current_path).to eq(shopper_engine.checkout_path id: :shipping)
         within '.skip-shipping' do
           click_button('Use billing address')
         end
-        expect(current_path).to eq(checkout_path id: :delivery)
-        within('.edit_order') do
+        expect(current_path).to eq(shopper_engine.checkout_path id: :delivery)
+        within('.edit_cart') do
           choose(@delivery.name)
           click_button('Save')
         end
-        expect(current_path).to eq(checkout_path id: :payment)
+        expect(current_path).to eq(shopper_engine.checkout_path id: :payment)
         within '#new_credit_card' do
           fill_in 'Number', with: @credit_card.number
           fill_in 'Cvv', with: @credit_card.cvv
@@ -99,7 +99,7 @@ feature "Checkout" do
         end
       end
       scenario 'should redirect to confirmation page' do
-        expect(current_path).to eq(checkout_path id: :confirmation)
+        expect(current_path).to eq(shopper_engine.checkout_path id: :confirmation)
       end
       scenario 'should have address info' do
         expect(page).to have_content(@address.address)
@@ -113,10 +113,10 @@ feature "Checkout" do
     end
     context "When user don't fill all forms" do
       before do
-        visit checkout_path id: :confirmation
+        visit shopper_engine.checkout_path id: :confirmation
       end
       scenario 'should redirect to first step' do
-        expect(current_path).to eq(checkout_path id: :billing)
+        expect(current_path).to eq(shopper_engine.checkout_path id: :billing)
       end
       scenario 'should display error' do
         expect(page).to have_selector('.alert-danger')

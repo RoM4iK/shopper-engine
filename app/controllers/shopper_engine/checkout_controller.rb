@@ -38,6 +38,7 @@ module ShopperEngine
 
     def render_wizard
       set_instance_variables!
+      return redirect_with_message if @error
       super
     end
 
@@ -45,25 +46,9 @@ module ShopperEngine
       @cart = current_cart
     end
 
-    def confirmation
-      if @cart.billing_address.blank?
-        return redirect_with_message :billing, "You must fill the billing address"
-      end
-      if @cart.shipping_address.blank?
-        return redirect_with_message :shipping, "You must fill the shipping address"
-      end
-      if @cart.delivery.blank?
-        return redirect_with_message :delivery, "You must select the delivery method"
-      end
-      if @cart.credit_card.blank?
-        return redirect_with_message :payment, "You must fill the credit card info"
-      end
-      render_wizard
-    end
-
-    def redirect_with_message(step, message)
-      flash[:alert] = message
-      redirect_to wizard_path(step)
+    def redirect_with_message
+      flash[:alert] = @error[:message]
+      redirect_to wizard_path(@error[:step])
     end
 
     def hande_errors
