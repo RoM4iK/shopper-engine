@@ -39,6 +39,16 @@ module ShopperEngine
             expect(controller).to redirect_to cart_path
           end
         end
+        context "When user has items in the cart" do
+          before do
+            @cart = FactoryGirl.create(:shopper_engine_cart)
+            @cart.add_item(@book)
+          end
+          it 'must render step template' do
+            get :show, id: first_step_id
+            expect(controller).to render_template first_step_id
+          end
+        end
       end
       context "When user not logged" do
         it 'must redirect to sign in page' do
