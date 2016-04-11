@@ -45,5 +45,32 @@ module ShopperEngine
         expect(controller).to redirect_to action: :index
       end
     end
+
+    describe '#place', :not_verify_doubles do
+      before do
+        @book = FactoryGirl.create(:book)
+        @cart = FactoryGirl.create(:shopper_engine_cart)
+        @quantity = 10
+        @cart.add_item(@book)
+        @order_item = @cart.order_items.first
+        allow_any_instance_of(ShopperEngine::CartController).to receive(:get_cart) { @cart }
+        session[:cart_id] = @cart.id
+      end
+      it 'must call place on cart' do
+        expect(@cart).to receive(:place!)
+        post :place
+      end
+      it 'must clear session' do
+        expect{post :place}.to change{session[:cart_id]}.from(@cart.id).to(nil)
+      end
+      it 'must set flash message' do
+        post :place
+        expect(controller).to set_flash[:notice]
+      end
+      it 'must redirect to orders index' do
+        post :place
+        expect(controller).to redirect_to controller: :orders, action: :index
+      end
+    end
   end
 end
