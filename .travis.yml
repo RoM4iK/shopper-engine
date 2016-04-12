@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+- 2.2.1
+script:
+- RAILS_ENV=test bundle exec rake db:migrate
+- bundle exec rspec
+addons:
+  code_climate:
+    repo_token: 8fed8e00cfcf192df614011fa69f4de2ff9113fee1bcc7f5ef24a40193a9bfaf
