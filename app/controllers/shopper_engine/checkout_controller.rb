@@ -59,6 +59,7 @@ module ShopperEngine
           render_wizard
         rescue ActionController::ParameterMissing
           flash.now[:alert] = "You must select delivery method"
+          render_wizard
       end
     end
 
