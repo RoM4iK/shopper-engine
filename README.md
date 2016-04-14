@@ -6,11 +6,11 @@
 2. Run migrations by `rake db:migrate`
 ## Customer model
 1. Ensure that your model is valid Devise user model.
-2. Call `acts_as_customer ` method inside it, if class name different then `User`, you must pass it to method.
+2. Call `acts_as_customer ` method inside it.
 ```
 class Customer < ActiveRecord::Base
   ...
-  acts_as_customer :customer
+  acts_as_customer
 end
 ```
 ## Products models
@@ -22,7 +22,11 @@ class Book < ActiveRecord::Base
   acts_as_product
 end
 ```
-## Customization
+## Helpers
+1. `shopper_engine.cart_path` - cart page url.
+2. `shopper_engine.add_to_cart(product)` - add to cart button.
+
+# Customization
 You can customize views and controllers by creating a copy of them in your application.
 ##### Command for creating controllers copy:
 `rails generate shopper_engine:controllers`

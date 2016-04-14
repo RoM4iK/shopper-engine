@@ -1,6 +1,6 @@
 module ShopperEngine
   module CartHelper
-    def add_to_cart_button(product, button_text = "Add to cart")
+    def add_to_cart_button(product)
       @product = product
       render partial: 'shopper_engine/cart/add_to_cart_button'
     end
