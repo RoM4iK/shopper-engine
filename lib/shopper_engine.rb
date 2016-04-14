@@ -1,6 +1,5 @@
 require 'wicked'
 require 'haml'
-require 'byebug'
 
 require "shopper_engine/engine"
 require "shopper_engine/model_methods/acts_as_product"
