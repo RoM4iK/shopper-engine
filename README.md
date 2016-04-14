@@ -1,5 +1,8 @@
 # Shopper Engine
 ### Simple mountable shop engine, with cart and checkout features.
+[![Build Status](https://travis-ci.org/RoM4iK/shopper-engine.svg?branch=master)](https://travis-ci.org/RoM4iK/shopper-engine)
+[![Code Climate](https://codeclimate.com/github/RoM4iK/shopper-engine/badges/gpa.svg)](https://codeclimate.com/github/RoM4iK/shopper-engine)
+[![Test Coverage](https://codeclimate.com/github/RoM4iK/shopper-engine/badges/coverage.svg)](https://codeclimate.com/github/RoM4iK/shopper-engine/coverage)
 # Installation
 ## Database setup
 1. Generate migrations by `rake shopper_engine:install:migrations`
