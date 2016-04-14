@@ -12,7 +12,7 @@ module ShopperEngine
         send(:has_many, :credit_cards, {
           class_name: 'ShopperEngine::CreditCard'
         })
-        ShopperEngine::set_devise_scope(scope)
+        ShopperEngine::set_devise_scope(scope.downcase)
       end
     end
   end
