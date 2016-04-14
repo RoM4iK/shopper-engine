@@ -1,4 +1,4 @@
-class ControllersGenerator < Rails::Generators::Base
+class ShopperEngine::ControllersGenerator < Rails::Generators::Base
   source_root File.expand_path("../../../../../app/controllers", __FILE__)
 
   def copy_controllers

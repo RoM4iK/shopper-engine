@@ -7,6 +7,9 @@
 ## Database setup
 1. Generate migrations by `rake shopper_engine:install:migrations`
 2. Run migrations by `rake db:migrate`
+## Routes setup
+You should put this line in your routes config
+`mount ShopperEngine::Engine => "/shop"`
 ## Customer model
 1. Ensure that your model is valid Devise user model.
 2. Call `acts_as_customer ` method inside it.
@@ -28,6 +31,7 @@ end
 ## Helpers
 1. `shopper_engine.cart_path` - cart page url.
 2. `shopper_engine.add_to_cart(product)` - add to cart button.
+2. `shopper_engine.orders_path` - customer order list page url.
 
 # Customization
 You can customize views and controllers by creating a copy of them in your application.
